@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="profile" href="http://gmpg.org/xfn/11">
-<title>Demo &#8211; D2Rec</title>
+<title>Core Algorithm &#8211; D2Rec</title>
 <link rel='dns-prefetch' href='//fonts.googleapis.com' />
 <link rel='dns-prefetch' href='//s.w.org' />
 <link rel="alternate" type="application/rss+xml" title="D2Rec &raquo; Feed" href="/feed/" />
@@ -36,30 +36,14 @@ img.emoji {
 <script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
 <script type='text/javascript' src='/wp-content/themes/standard-lite/js/jquery.nivo.slider.js?ver=4.9.4'></script>
 <script type='text/javascript' src='/wp-content/themes/standard-lite/js/custom.js?ver=4.9.4'></script>
-<script type='text/javascript'>
-function getResult() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("result").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "http://localhost:5000/api/" + document.getElementById("demo").value, true);
-  xhttp.send();
-}
-
-function clearResult() {
-	document.getElementById("result").innerHTML = null;
-}
-</script>
 <link rel='https://api.w.org/' href='/wp-json/' />
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
 <meta name="generator" content="WordPress 4.9.4" />
-<link rel="canonical" href="/demo/" />
-<link rel='shortlink' href='/?p=8' />
-<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=%2Fdemo%2F" />
-<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%2Fdemo%2F&#038;format=xml" />
+<link rel="canonical" href="/core-algorithm/" />
+<link rel='shortlink' href='/?p=59' />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=%2Fcore-algorithm%2F" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%2Fcore-algorithm%2F&#038;format=xml" />
         <style>
 				a, 
 				.tm_client strong,
@@ -107,7 +91,7 @@ function clearResult() {
 	</style>
 	</head>
 
-<body class="page-template-default page page-id-8">
+<body class="page-template-default page page-id-59">
 
 
 <div id="header">
@@ -124,8 +108,8 @@ function clearResult() {
     	</div><!-- toggle -->    
     <div class="sitenav">                   
    	 	<div class="menu-demo-ui-container"><ul id="menu-demo-ui" class="menu"><li id="menu-item-88" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-88"><a href="/">Overview</a></li>
-<li id="menu-item-89" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-89"><a href="/core-algorithm/">Core Algorithm</a></li>
-<li id="menu-item-90" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-8 current_page_item menu-item-90"><a href="/demo/">Demo</a></li>
+<li id="menu-item-89" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-59 current_page_item menu-item-89"><a href="/core-algorithm/">Core Algorithm</a></li>
+<li id="menu-item-90" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-90"><a href="/demo/">Demo</a></li>
 <li id="menu-item-91" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-91"><a href="http://localhost:3000/">Interactive</a></li>
 </ul></div> 
     </div><!--.sitenav -->
@@ -138,16 +122,70 @@ function clearResult() {
     <div class="middle-align content_sidebar">
         <div class="site-main" id="sitemain">
 			                
-<article id="post-8" class="post-8 page type-page status-publish hentry">
+<article id="post-59" class="post-59 page type-page status-publish hentry">
 	<header class="entry-header">
-		<h1 class="entry-title">Demo</h1>
+		<h1 class="entry-title">Core Algorithm</h1>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<div>Match ID: <input id="demo" name="matchid" type="text" value="3803000030" /><br />
-<button type="button">Get Result</button><br />
-<button type="button">Clear Result</button></div>
-<div id="result"></div>
+		<div id="attachment_75" style="max-width: 258px" class="wp-caption alignright"><img class="size-full wp-image-75" src="/wp-content/uploads/2018/04/Untitled-picture-1.png" alt="" width="248" height="677" srcset="/wp-content/uploads/2018/04/Untitled-picture-1.png 248w, /wp-content/uploads/2018/04/Untitled-picture-1-110x300.png 110w" sizes="(max-width: 248px) 100vw, 248px" /><p class="wp-caption-text">Consumable Items</p></div>
+<h1>Data Crawling</h1>
+<ul>
+<li>Opendota with json format</li>
+<li>Only trace gameplays with accessible purchase logs
+<ul>
+<li>~20,000 training gameplays since Oct. 13, 2017.</li>
+</ul>
+</li>
+<li>JSON</li>
+<li>May or may not contain purchase log. We only consider matches with purchase logs.</li>
+<li><a href="https://api.opendota.com/api/matches/3801257554">Sample</a></li>
+</ul>
+<p>&nbsp;</p>
+<h1>Item categorization</h1>
+<ul>
+<li>Consumable</li>
+<li>Basic
+<ul>
+<li>Cost &lt; 1000</li>
+</ul>
+</li>
+<li>Mid
+<ul>
+<li>1001 &lt; Cost &lt; 3500</li>
+</ul>
+</li>
+<li>Advanced
+<ul>
+<li>3501 &lt; Cost</li>
+</ul>
+</li>
+<li>Other types
+<ul>
+<li>Crafted
+<ul>
+<li>We use manual dictionary to remove consumed item.</li>
+</ul>
+</li>
+<li>Upgradable
+<ul>
+<li>An item may have multiple levels, but have the same ID.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1></h1>
+<h1></h1>
+<h1></h1>
+<h1>Algorithm</h1>
+<ul>
+<li>Hero-Item Matrix</li>
+<li>Baseline: Win*1.2, Lose*0.8
+<p><div id="attachment_69" style="max-width: 310px" class="wp-caption alignright"><img class="wp-image-69 size-medium" src="/wp-content/uploads/2018/04/Untitled-picture2-300x96.png" alt="" width="300" height="96" srcset="/wp-content/uploads/2018/04/Untitled-picture2-300x96.png 300w, /wp-content/uploads/2018/04/Untitled-picture2.png 320w" sizes="(max-width: 300px) 100vw, 300px" /><p class="wp-caption-text">Perseverance&#8217;s item hierarchy: Its components are Ring of Health and Void Stone, and it is used to build Refresher Orb, Linken&#8217;s Sphere, Lotus Orb and Battle Fury.</p></div></li>
+<li>Items that benefit yourself</li>
+<li>Items that benefit other teammates</li>
+</ul>
 			</div><!-- .entry-content -->
 	</article><!-- #post-## -->
                                     </div>

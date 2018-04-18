@@ -152,4 +152,4 @@ a.nivo-nextNav {
 #slider:hover .nivo-directionNav a {
     opacity: 0.8;
 }
-.nivo-directionNav a{background:url(./../images/slide-nav.png) no-repeat scroll 0 0;}
+.nivo-directionNav a{background:url(/wp-content/themes/standard-lite/images/slide-nav.png) no-repeat scroll 0 0;}

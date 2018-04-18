@@ -211,7 +211,7 @@ h2.section-title {
 .toggle a {
     width: auto;
     color: #ffffff;
-    background: url(./images/mobile_nav_right.png) no-repeat right center #444444;
+    background: url(/wp-content/themes/standard-lite/images/mobile_nav_right.png) no-repeat right center #444444;
     padding: 10px 25px 10px 15px;
     margin-top: 5px;
     font-size: 16px;
