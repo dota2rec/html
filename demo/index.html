@@ -1,0 +1,179 @@
+ <!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<title>Demo &#8211; D2Rec</title>
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="D2Rec &raquo; Feed" href="./../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="D2Rec &raquo; Comments Feed" href="./../comments/feed/index.html" />
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='standard-lite-font-css'  href='https://fonts.googleapis.com/css?family=Montserrat%3A400%2C700%7CKarla%3A400%2C700&#038;ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='standard-lite-basic-style-css'  href='./../wp-content/themes/standard-lite/style.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='standard-lite-editor-style-css'  href='./../wp-content/themes/standard-lite/editor-style.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='standard-lite-responsive-style-css'  href='./../wp-content/themes/standard-lite/css/theme-responsive.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='nivo-style-css'  href='./../wp-content/themes/standard-lite/css/nivo-slider.css?ver=4.9.4' type='text/css' media='all' />
+<script type='text/javascript' src='./../wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='./../wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='./../wp-content/themes/standard-lite/js/jquery.nivo.slider.js?ver=4.9.4'></script>
+<script type='text/javascript' src='./../wp-content/themes/standard-lite/js/custom.js?ver=4.9.4'></script>
+<script type='text/javascript'>
+function getResult() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+      document.getElementById("result").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "http://localhost:5000/api/" + document.getElementById("demo").value, true);
+  xhttp.send();
+  document.getElementById("result").innerHTML = "Running...";
+}
+
+function clearResult() {
+	document.getElementById("result").innerHTML = null;
+}
+</script>
+<link rel='https://api.w.org/' href='./../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="./../xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="./../wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.9.4" />
+<link rel="canonical" href="./index.html" />
+<link rel='shortlink' href='./../index.html?p=8' />
+<link rel="alternate" type="application/json+oembed" href="./../wp-json/oembed/1.0/embed/index.html?url=.%2Fdemo%2F" />
+<link rel="alternate" type="text/xml+oembed" href="./../wp-json/oembed/1.0/embed/index.html?url=.%2Fdemo%2F&#038;format=xml" />
+        <style>
+				a, 
+				.tm_client strong,
+				.postmeta a:hover,
+				#sidebar ul li a:hover,
+				.blog-post h3.entry-title,
+				.main-nav ul li a:hover,
+				.sitenav ul li a:hover, 
+				.sitenav ul li.current_page_item a, 
+				.sitenav ul li:hover a.parent,
+				.sitenav ul li ul.sub-menu li a:hover, 
+				.sitenav ul li.current_page_item ul.sub-menu li a:hover, 
+				.sitenav ul li ul.sub-menu li.current_page_item a,
+				.home-section .home-left h3{
+					color:#1293d4;
+				}
+				a.blog-more:hover,
+				#commentform input#submit,
+				input.search-submit,
+				.nivo-controlNav a.active,
+				.blog-date .date,
+				a.read-more,
+				.header-top,
+				.nivo-caption a.button,
+				.home-section .home-left a.ReadMore,
+				.nav-links .current, .nav-links a:hover{
+					background-color:#1293d4;
+				}
+				a.morebutton{
+					border-color:#1293d4;
+				}
+				@media screen and (max-width: 980px){
+					.header_right .sitenav ul li a:hover{
+							color:#1293d4 !important;
+						}	
+				}
+		</style>
+		<style type="text/css">
+			#header{
+			background-image: url(./../wp-content/uploads/2018/04/cropped-20141223121131a0dz4ak3w8am33jp-4.jpg);
+			background-position: center top;
+		}
+		.logo h1 a { color:#000000;}
+		
+	</style>
+	</head>
+
+<body class="page-template-default page page-id-8">
+
+
+<div id="header">
+	<div class="header-inner">
+      <div class="logo">
+           			    <h1><a href="./../index.html" rel="home">D2Rec</a></h1>
+											<p>Dota2 Recommender System Project</p>
+					      </div><!-- logo -->                    
+    <div class="header_right"> 
+        		 <div class="toggle">
+            <a class="toggleMenu" href="#">
+                Menu                
+            </a>
+    	</div><!-- toggle -->    
+    <div class="sitenav">                   
+   	 	<div class="menu"><ul>
+<li class="page_item page-item-10"><a href="./../blog/index.html">Blog</a></li>
+<li class="page_item page-item-8 current_page_item"><a href="./index.html">Demo</a></li>
+<li class="page_item page-item-7"><a href="./../index.html">Overview</a></li>
+</ul></div>
+ 
+    </div><!--.sitenav -->
+        <div class="clear"></div>
+    </div><!--header_right-->    
+ <div class="clear"></div>
+</div><!-- .header-inner-->
+</div><!-- .header -->  <div class="main-container">
+<div class="content-area">
+    <div class="middle-align content_sidebar">
+        <div class="site-main" id="sitemain">
+			                
+<article id="post-8" class="post-8 page type-page status-publish has-post-thumbnail hentry">
+	<header class="entry-header">
+		<h1 class="entry-title">Demo</h1>
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<div>Match ID: <input id="demo" name="matchid" type="text" value="3803000030" /><br />
+<button type="button" onClick="getResult()">Get Result</button><br />
+<button type="button" onClick="clearResult()">Clear Result</button></div>
+<div id="result"></div>
+			</div><!-- .entry-content -->
+	</article><!-- #post-## -->
+                                    </div>
+        <div id="sidebar">
+    
+    <aside id="text-2" class="widget widget_text"><h3 class="widget-title">About Us</h3>			<div class="textwidget"><p><strong>Members</strong><br />
+Yukun Zeng &#8211; Core Algorithm</p>
+<p>Guanlun Zhao</p>
+<p>Victor Lin &#8211; Website Development</p>
+<p>Wei Shi</p>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">About Project</h3>			<div class="textwidget"><p>CSCE-670 Spring 2018 Group Project</p>
+</div>
+		</aside>	
+</div><!-- sidebar -->
+        <div class="clear"></div>
+    </div>
+</div><div class="clear"></div>
+
+</div><!-- main-container -->
+
+<div class="copyright-wrapper">
+                <div class="copyright">
+                    	<p>&copy; <a href="./../index.html" rel="home">D2Rec</a>  2018. Powered by WordPress</p>               
+                </div><!-- copyright --><div class="clear"></div>           
+        </div>
+    </div>        
+<script type='text/javascript' src='./../wp-includes/js/wp-embed.min.js?ver=4.9.4'></script>
+
+</body>
+</html>
