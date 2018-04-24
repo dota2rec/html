@@ -32,6 +32,7 @@ img.emoji {
 <link rel='stylesheet' id='standard-lite-editor-style-css'  href='/wp-content/themes/standard-lite/editor-style.css?ver=4.9.4' type='text/css' media='all' />
 <link rel='stylesheet' id='standard-lite-responsive-style-css'  href='/wp-content/themes/standard-lite/css/theme-responsive.css?ver=4.9.4' type='text/css' media='all' />
 <link rel='stylesheet' id='nivo-style-css'  href='/wp-content/themes/standard-lite/css/nivo-slider.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='tablepress-default-css'  href='/wp-content/plugins/tablepress/css/default.min.css?ver=1.9' type='text/css' media='all' />
 <script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
 <script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
 <script type='text/javascript' src='/wp-content/themes/standard-lite/js/jquery.nivo.slider.js?ver=4.9.4'></script>
@@ -108,9 +109,9 @@ img.emoji {
     	</div><!-- toggle -->    
     <div class="sitenav">                   
    	 	<div class="menu-demo-ui-container"><ul id="menu-demo-ui" class="menu"><li id="menu-item-88" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-7 current_page_item menu-item-88"><a href="/">Overview</a></li>
-<li id="menu-item-89" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-89"><a href="/core-algorithm/">Core Algorithm</a></li>
-<li id="menu-item-90" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-90"><a href="/demo/">Demo</a></li>
-<li id="menu-item-91" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-91"><a href="http://localhost:3000/">Interactive</a></li>
+<li id="menu-item-89" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-89"><a href="/core-algorithm/">Algorithm &#038; Evaluation</a></li>
+<li id="menu-item-99" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-99"><a href="/sample_result/">Sample Result</a></li>
+<li id="menu-item-91" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-91"><a href="http://dota2rec.github.io/interactive">Interactive</a></li>
 </ul></div> 
     </div><!--.sitenav -->
         <div class="clear"></div>
@@ -131,51 +132,56 @@ img.emoji {
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<p><img class="alignright wp-image-41 size-thumbnail" src="/wp-content/uploads/2018/04/nvi7WJf4_400x400-150x150.jpg" alt="" width="150" height="150" srcset="/wp-content/uploads/2018/04/nvi7WJf4_400x400-150x150.jpg 150w, /wp-content/uploads/2018/04/nvi7WJf4_400x400-300x300.jpg 300w, /wp-content/uploads/2018/04/nvi7WJf4_400x400.jpg 390w" sizes="(max-width: 150px) 100vw, 150px" />Dota2 is a MOBA (multiplayer online battle arena) video game on PC release on Steam on July 9, 2013. Dota2 is played between 2 teams of five players, with each team occupying and defending their own separate bases on the map. Each of ten players independently controls one powerful character, known as a “hero”, with unique abilities and different styles to play. During each match, players collect experience points and items for their own heroes to successfully battle the opposing team. As the match goes on, they need to update or change to more powerful in-game items to boost their capabilities.</p>
-<p>In this game, it is crucial to choose the proper items different heroes at the correct times. When choosing items, players need to take a large number of factors into consideration, including but not limited to the current game stage, the heroes in the opposing team, whether they are at an advantage, and the exact strategy the team is executing, e.g. attacking or defending. Selecting the most suitable items could definitely maximize the possibility to win the game.</p>
-<h1><strong>Goals</strong></h1>
-<p>Our primary goal is to utilize the trained model to recommend most useful items as well as their buying order according to the hero selection in both camps and the winning strategy. If possible, we’d like to design an auxiliary system which not only recommends items before the game starts but also dynamically recommend the most suitable items according to the different condition.</p>
-<h1><strong>Motivation</strong><a href="/wp-content/uploads/2018/04/火狐截图_2018-04-18T04-17-26.726Z-1.png"><img class="alignright wp-image-73 size-medium" src="/wp-content/uploads/2018/04/火狐截图_2018-04-18T04-17-26.726Z-1-254x300.png" alt="" width="254" height="300" srcset="/wp-content/uploads/2018/04/火狐截图_2018-04-18T04-17-26.726Z-1-254x300.png 254w, /wp-content/uploads/2018/04/火狐截图_2018-04-18T04-17-26.726Z-1-768x908.png 768w, /wp-content/uploads/2018/04/火狐截图_2018-04-18T04-17-26.726Z-1-867x1024.png 867w, /wp-content/uploads/2018/04/火狐截图_2018-04-18T04-17-26.726Z-1.png 941w" sizes="(max-width: 254px) 100vw, 254px" /></a></h1>
-<p>Despite the game dynamics and high complexity in choosing items, currently Dota2 adopts a static item recommender system that suggests hard-coded best-suitable items for heroes based purely on their personalities. The official item recommendations for heroes can be found on [2], however the static approach is limited in the following aspects:</p>
+		<p><img class="alignright wp-image-41 size-thumbnail" src="/wp-content/uploads/2018/04/nvi7WJf4_400x400-150x150.jpg" alt="" width="150" height="150" srcset="/wp-content/uploads/2018/04/nvi7WJf4_400x400-150x150.jpg 150w, /wp-content/uploads/2018/04/nvi7WJf4_400x400-300x300.jpg 300w, /wp-content/uploads/2018/04/nvi7WJf4_400x400.jpg 390w" sizes="(max-width: 150px) 100vw, 150px" /></p>
+<p>Dota2 is a popular MOBA (multiplayer online battle arena)  game on PC. Dota2 is played between 2 teams of five players, with each team occupying and defending their</p>
+<p>own separate bases on the map. During each match, players update abilities and choose proper items to successfully battle the opposing team. As the match goes on, they need to update or purchase more powerful items to boost their capabilities.</p>
+<p>In a big picture, a game match consists of the followings:</p>
+<ul>
+<li>115 Heroes</li>
+<li>150 Items (12 consumables, 86 craft-ables)<img class="wp-image-155 alignright" src="/wp-content/uploads/2018/04/maxresdefault.jpg" alt="" width="473" height="266" srcset="/wp-content/uploads/2018/04/maxresdefault.jpg 1920w, /wp-content/uploads/2018/04/maxresdefault-300x169.jpg 300w, /wp-content/uploads/2018/04/maxresdefault-768x432.jpg 768w, /wp-content/uploads/2018/04/maxresdefault-1024x576.jpg 1024w" sizes="(max-width: 473px) 100vw, 473px" /></li>
+</ul>
+<p>Our goal is to train several models to recommend most useful items as well as their buying order. By evaluating with testing set, we achieve the following similarities:</p>
+<ul>
+<li>Baseline: 0.69</li>
+<li>Wei: 0.75</li>
+<li>TDIPV with Classification: 0.76</li>
+</ul>
+<p>&nbsp;</p>
+<h1><b>Motivation</b></h1>
+<p>The current Dota2 game adopts a static item recommender system that suggests hard-coded best-suitable items for heroes based purely on their personalities. The official item recommendations for heroes can be found on:</p>
+<p><a href="https://dota2.gamepedia.com/Dota_2_Wiki">https://dota2.gamepedia.com/Dota_2_Wiki</a></p>
+<p>However the static approach is limited in the following aspects:</p>
 <ul>
 <li>The current recommender system disregards any other dynamic factors in a game, such as hero selection and item combinations of both camps, which might significantly determine key items for certain heroes.</li>
 <li>The manual efforts of maintaining a static recommendation table need to be updated repeatedly with version changes, gaming strategy evolutions, etc.</li>
 </ul>
-<p>In academia, research efforts are majorly devoted to machine learning techniques for Dota2 results prediction through mining game replay data[3], analyzing team drafts[4] or modeling heroes and items[5]. However, few are proposed for item recommendations purposes.</p>
-<h1><b>Core Algorithm</b></h1>
-<p><a href="/core-algorithm/">Page: Core Algorithm</a></p>
-<p>Therefore, we propose to automate the recommending process and enhance the recommendation accuracy by leveraging IR and Machine Learning techniques. The target recommender system will take selected statistical match history data from <a href="https://www.opendota.com/">OpenDota</a> as input. Through mining and analyzing data, such as analysis of co-relevance between the winning probability and item-hero combinations, D2Rec would be able to generate much more accurate item recommendations on-the-fly while totally avoiding manual maintenance. We summarize the primary outcome of D2Rec as a model, trained by recent gameplay data from professional matches, that could recommend most useful items as well as their buying order. By examining the winning probability of the same or similar hero cast with our recommended items, the system can be comprehensively evaluated.</p>
+<p>&nbsp;</p>
 <h1><b>Existing Resource</b></h1>
-<p>Various web APIs from both Dota2 official and other third party organizations have been discovered that might serve as out data sources, such as <a href="https://docs.opendota.com/">OpenDota</a>. Due to the popularity of the game, a lot of wrappers in different programming languages have also been developed. As we are majorly using Python in CSCE 670, we plan to adopt the <a href="http://dota2api.readthedocs.io/en/latest/">Python Dota2 API</a>. The detailed data format of the information returned by the <i>get_match_details </i>API could be find <a href="https://docs.google.com/document/d/1Z0fnfGvGsOUEpWQgsQm9_VhnqYHhYRI63BcAaEs9r3s/edit#heading=h.m0e7fludbp1j">in the Appendix</a>.</p>
-<h1><b>Evaluation</b></h1>
-<p>A comprehensive evaluation of D2Rec accuracy is difficult due to the complexity and dynamic feature of Dota2. An intuitive validation approach of D2Rec system is to apply the recommended items on heroes and do matches with the same configuration repeatedly. Then the correctness of recommendations can be easily evaluated by analyzing the match statistics like per-hero performance and overall winning rate. However, though we have access to data over 2.7 billion matches, several challenges exist:</p>
-<ul>
-<li>Low-quality matches: usually in Dota2 and any other RTS, a considerable portion of matches are considered meaningless due to early-quit, player number inequality, etc. These games are considered irrelevant and will be filtered out.</li>
-<li>Version evolution: Dota2 has been upgraded, lots of rules and heroes have been added or modified over time, therefore not all historical match data are meaningful for making recommendations in the current version.</li>
-<li>Early game vs. late game: To avoid recommending late-game items to heroes during the early game or vice versa, we might also need to apply game duration filters, e.g. to select relatively long games only.</li>
-<li>Match uniqueness: no matches are the same. Player dynamics and other random factors would influence the match significantly. Therefore, it’s non-trivial to evaluate the winning rate of a specific hero-item combination.</li>
-</ul>
-<p>Apparently, by selectively adopting match data the first three challenges may be solved. For example, only use high-quality and recent match data (all records after a significant version update), the first two challenges can be resolved. However, deliberate filtering process should be applied, details such as the definition of match quality are still open to discussion. Different from traditional recommender system, which may use definitive labeled data from real users to evaluate the recommendation effectiveness, in our case we may calculate winning rate in matches that’s the same or highly similar in terms of  item-hero combination for evaluation of the recommendation correctness.</p>
-<h1><b>References</b></h1>
-<p>[2] <a href="https://dota2.gamepedia.com/">https://dota2.gamepedia.com</a></p>
-<p>[3] Johansson, Filip, and Jesper Wikström. &#8220;Result prediction by mining replays in Dota 2.&#8221; (2015).</p>
-<p>[4] Semenov, Aleksandr, et al. &#8220;Performance of machine learning algorithms in predicting game outcome from drafts in dota 2.&#8221; International Conference on Analysis of Images, Social Networks and Texts. Springer, Cham, 2016.</p>
-<p>[5] K. Song, T. Zhang, and C. Ma, “Predicting the winning side of DotA2,” tech. rep., Stanford University, 2015.</p>
-<p>[2] <a href="https://www.opendota.com/">https://www.opendota.com/</a></p>
-<p>[3] <a href="http://dota2api.readthedocs.io/en/latest/index.html">http://dota2api.readthedocs.io/en/latest/index.html</a></p>
-<p>[4] <a href="https://api.steampowered.com/IDOTA2Match_570">https://api.steampowered.com/IDOTA2Match_570</a></p>
+<p>Thanks to Dota’s the huge popularity and community efforts, multiple online resources providing a wide variety of game records have emerged over the past years. Our data were obtained from <a href="https://www.opendota.com/">OpenDota.com</a>, an open source game data platform offering past match information for both professional and amature players.</p>
+<p>On OpenDota.com, each match is associated with a serial ID at the API endpoint:</p>
+<p>api.opendota.com/api/matches/&lt;MATCH_ID&gt;</p>
+<p>and can be downloaded in JSON format. Unfortunately, there is no such API endpoint where we could batch download a large set of match records and therefore the only option was to crawl individual records at incrementing IDs. Apart from that, only around 1% of all the IDs are related to games that contained item purchase logs. OpenDota limited HTTP request frequency to approx. 3 per second and we had to perform long-running data crawling actions with a Node.js script (so that requests are non-blocking) in order to obtain enough records. Running in parallel, we were eventually able to fetch enough match records with item purchase logs.</p>
+<p>Apart from the match-related information, OpenDota also provided a direct-query API endpoint, allowing us to performed limited queries to its database directly. We were able to fetch important game metadata from this endpoint, including but not limited to hero information, item details, etc.</p>
+<p>&nbsp;</p>
 			</div><!-- .entry-content -->
 	</article><!-- #post-## -->
             </div>
             <div id="sidebar">
     
     <aside id="text-2" class="widget widget_text"><h3 class="widget-title">About Us</h3>			<div class="textwidget"><p><strong>Members</strong><br />
-Yukun Zeng &#8211; Core Algorithm</p>
+Yukun Zeng</p>
 <p>Guanlun Zhao</p>
-<p>Victor Lin &#8211; Website Development</p>
+<p>Victor Lin</p>
 <p>Wei Shi</p>
 </div>
 		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">About Project</h3>			<div class="textwidget"><p>CSCE-670 Spring 2018 Group Project</p>
+</div>
+		</aside><aside id="media_video-3" class="widget widget_media_video"><h3 class="widget-title">D2Rec Demo</h3><div style="width:100%;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-7-1" preload="metadata" controls="controls"><source type="video/youtube" src="https://www.youtube.com/watch?v=4GPTGzDXGLA&#038;_=1" /><a href="https://www.youtube.com/watch?v=4GPTGzDXGLA">https://www.youtube.com/watch?v=4GPTGzDXGLA</a></video></div></aside><aside id="text-7" class="widget widget_text"><h3 class="widget-title">Project Files &#038; Links</h3>			<div class="textwidget"><ul>
+<li><a href="/wp-content/uploads/2018/04/d2rec_propsal.pdf">[PDF] Project Propsal</a></li>
+<li><a href="/wp-content/uploads/2018/04/d2rec_poster.pdf">[PDF] Project_Poster</a></li>
+<li><a href="https://github.com/dota2rec">Github</a></li>
+</ul>
 </div>
 		</aside>	
 </div><!-- sidebar -->
@@ -190,7 +196,21 @@ Yukun Zeng &#8211; Core Algorithm</p>
                 </div><!-- copyright --><div class="clear"></div>           
         </div>
     </div>        
+<link rel='stylesheet' id='mediaelement-css'  href='/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.6-78496d1' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=4.9.4' type='text/css' media='all' />
 <script type='text/javascript' src='/wp-includes/js/wp-embed.min.js?ver=4.9.4'></script>
+<script type='text/javascript'>
+var mejsL10n = {"language":"en","strings":{"mejs.install-flash":"You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https:\/\/get.adobe.com\/flashplayer\/","mejs.fullscreen-off":"Turn off Fullscreen","mejs.fullscreen-on":"Go Fullscreen","mejs.download-video":"Download Video","mejs.fullscreen":"Fullscreen","mejs.time-jump-forward":["Jump forward 1 second","Jump forward %1 seconds"],"mejs.loop":"Toggle Loop","mejs.play":"Play","mejs.pause":"Pause","mejs.close":"Close","mejs.time-slider":"Time Slider","mejs.time-help-text":"Use Left\/Right Arrow keys to advance one second, Up\/Down arrows to advance ten seconds.","mejs.time-skip-back":["Skip back 1 second","Skip back %1 seconds"],"mejs.captions-subtitles":"Captions\/Subtitles","mejs.captions-chapters":"Chapters","mejs.none":"None","mejs.mute-toggle":"Mute Toggle","mejs.volume-help-text":"Use Up\/Down Arrow keys to increase or decrease volume.","mejs.unmute":"Unmute","mejs.mute":"Mute","mejs.volume-slider":"Volume Slider","mejs.video-player":"Video Player","mejs.audio-player":"Audio Player","mejs.ad-skip":"Skip ad","mejs.ad-skip-info":["Skip in 1 second","Skip in %1 seconds"],"mejs.source-chooser":"Source Chooser","mejs.stop":"Stop","mejs.speed-rate":"Speed Rate","mejs.live-broadcast":"Live Broadcast","mejs.afrikaans":"Afrikaans","mejs.albanian":"Albanian","mejs.arabic":"Arabic","mejs.belarusian":"Belarusian","mejs.bulgarian":"Bulgarian","mejs.catalan":"Catalan","mejs.chinese":"Chinese","mejs.chinese-simplified":"Chinese (Simplified)","mejs.chinese-traditional":"Chinese (Traditional)","mejs.croatian":"Croatian","mejs.czech":"Czech","mejs.danish":"Danish","mejs.dutch":"Dutch","mejs.english":"English","mejs.estonian":"Estonian","mejs.filipino":"Filipino","mejs.finnish":"Finnish","mejs.french":"French","mejs.galician":"Galician","mejs.german":"German","mejs.greek":"Greek","mejs.haitian-creole":"Haitian Creole","mejs.hebrew":"Hebrew","mejs.hindi":"Hindi","mejs.hungarian":"Hungarian","mejs.icelandic":"Icelandic","mejs.indonesian":"Indonesian","mejs.irish":"Irish","mejs.italian":"Italian","mejs.japanese":"Japanese","mejs.korean":"Korean","mejs.latvian":"Latvian","mejs.lithuanian":"Lithuanian","mejs.macedonian":"Macedonian","mejs.malay":"Malay","mejs.maltese":"Maltese","mejs.norwegian":"Norwegian","mejs.persian":"Persian","mejs.polish":"Polish","mejs.portuguese":"Portuguese","mejs.romanian":"Romanian","mejs.russian":"Russian","mejs.serbian":"Serbian","mejs.slovak":"Slovak","mejs.slovenian":"Slovenian","mejs.spanish":"Spanish","mejs.swahili":"Swahili","mejs.swedish":"Swedish","mejs.tagalog":"Tagalog","mejs.thai":"Thai","mejs.turkish":"Turkish","mejs.ukrainian":"Ukrainian","mejs.vietnamese":"Vietnamese","mejs.welsh":"Welsh","mejs.yiddish":"Yiddish"}};
+</script>
+<script type='text/javascript' src='/wp-includes/js/mediaelement/mediaelement-and-player.min.js?ver=4.2.6-78496d1'></script>
+<script type='text/javascript' src='/wp-includes/js/mediaelement/mediaelement-migrate.min.js?ver=4.9.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpmejsSettings = {"pluginPath":"\/wordpress\/wp-includes\/js\/mediaelement\/","classPrefix":"mejs-","stretching":"responsive"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-includes/js/mediaelement/wp-mediaelement.min.js?ver=4.9.4'></script>
+<script type='text/javascript' src='/wp-includes/js/mediaelement/renderers/vimeo.min.js?ver=4.2.6-78496d1'></script>
 
 </body>
 </html>

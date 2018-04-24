@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="profile" href="http://gmpg.org/xfn/11">
-<title>Core Algorithm &#8211; D2Rec</title>
+<title>Algorithm &#038; Evaluation &#8211; D2Rec</title>
 <link rel='dns-prefetch' href='//fonts.googleapis.com' />
 <link rel='dns-prefetch' href='//s.w.org' />
 <link rel="alternate" type="application/rss+xml" title="D2Rec &raquo; Feed" href="/feed/" />
@@ -32,6 +32,7 @@ img.emoji {
 <link rel='stylesheet' id='standard-lite-editor-style-css'  href='/wp-content/themes/standard-lite/editor-style.css?ver=4.9.4' type='text/css' media='all' />
 <link rel='stylesheet' id='standard-lite-responsive-style-css'  href='/wp-content/themes/standard-lite/css/theme-responsive.css?ver=4.9.4' type='text/css' media='all' />
 <link rel='stylesheet' id='nivo-style-css'  href='/wp-content/themes/standard-lite/css/nivo-slider.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='tablepress-default-css'  href='/wp-content/plugins/tablepress/css/default.min.css?ver=1.9' type='text/css' media='all' />
 <script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
 <script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
 <script type='text/javascript' src='/wp-content/themes/standard-lite/js/jquery.nivo.slider.js?ver=4.9.4'></script>
@@ -108,9 +109,9 @@ img.emoji {
     	</div><!-- toggle -->    
     <div class="sitenav">                   
    	 	<div class="menu-demo-ui-container"><ul id="menu-demo-ui" class="menu"><li id="menu-item-88" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-88"><a href="/">Overview</a></li>
-<li id="menu-item-89" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-59 current_page_item menu-item-89"><a href="/core-algorithm/">Core Algorithm</a></li>
-<li id="menu-item-90" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-90"><a href="/demo/">Demo</a></li>
-<li id="menu-item-91" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-91"><a href="http://localhost:3000/">Interactive</a></li>
+<li id="menu-item-89" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-59 current_page_item menu-item-89"><a href="/core-algorithm/">Algorithm &#038; Evaluation</a></li>
+<li id="menu-item-99" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-99"><a href="/sample_result/">Sample Result</a></li>
+<li id="menu-item-91" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-91"><a href="http://dota2rec.github.io/interactive">Interactive</a></li>
 </ul></div> 
     </div><!--.sitenav -->
         <div class="clear"></div>
@@ -124,67 +125,165 @@ img.emoji {
 			                
 <article id="post-59" class="post-59 page type-page status-publish hentry">
 	<header class="entry-header">
-		<h1 class="entry-title">Core Algorithm</h1>
+		<h1 class="entry-title">Algorithm &#038; Evaluation</h1>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<div id="attachment_75" style="max-width: 258px" class="wp-caption alignright"><img class="size-full wp-image-75" src="/wp-content/uploads/2018/04/Untitled-picture-1.png" alt="" width="248" height="677" srcset="/wp-content/uploads/2018/04/Untitled-picture-1.png 248w, /wp-content/uploads/2018/04/Untitled-picture-1-110x300.png 110w" sizes="(max-width: 248px) 100vw, 248px" /><p class="wp-caption-text">Consumable Items</p></div>
-<h1>Data Crawling</h1>
+		<h1><b>Core Algorithm</b></h1>
+<p><u>Basic Hero Item Preference</u></p>
+<p style="text-align: center;"><i>baseline = [</i><i>hero×item</i><i>]</i></p>
+<p>Captures basic statistical hero-item preference</p>
 <ul>
-<li>Opendota with json format</li>
-<li>Only trace gameplays with accessible purchase logs
+<li>Assumptions
 <ul>
-<li>~20,000 training gameplays since Oct. 13, 2017.</li>
+<li>Item popularity indicates possible item fitness</li>
+<li>Winning matches strengthen the fitness of an item</li>
 </ul>
 </li>
-<li>JSON</li>
-<li>May or may not contain purchase log. We only consider matches with purchase logs.</li>
-<li><a href="https://api.opendota.com/api/matches/3801257554">Sample</a></li>
 </ul>
+<ul>
+<li>Calculation:<img class="wp-image-173" src="/wp-content/uploads/2018/04/eq1.png" alt="" width="207" height="22" srcset="/wp-content/uploads/2018/04/eq1.png 311w, /wp-content/uploads/2018/04/eq1-300x32.png 300w" sizes="(max-width: 207px) 100vw, 207px" /><i></i>
+<ul>
+<li><i>α</i><i>,</i><i>β</i>: Winning Score, Losing Score</li>
+<li><i>w,l</i>: Winning Match Count, Losing Match Count where hero h selects item <i>i</i></li>
+<li>Parameter setting:<i> α</i><i> &gt; </i><i>β</i></li>
+</ul>
+</li>
+</ul>
+<div id="attachment_180" style="max-width: 477px" class="wp-caption aligncenter"><img class="wp-image-180" src="/wp-content/uploads/2018/04/Picture2.png" alt="" width="467" height="336" srcset="/wp-content/uploads/2018/04/Picture2.png 652w, /wp-content/uploads/2018/04/Picture2-300x216.png 300w" sizes="(max-width: 467px) 100vw, 467px" /><p class="wp-caption-text">Item purchase distribution over different match stages: Basic items account for large percentage throughout time</p></div>
+<h1> <u>Team Draft based Item Preference Variation (TDIPV)</u></h1>
+<p>Captures other heroes’ influence on item choice</p>
+<ul>
+<li>Theorems
+<ul>
+<li>Enemy’s enemy is my friend: items that statistically reduce enemy hero’s winning rate</li>
+<li>Friend’s friend is my friend: items that statistically improve ally hero’s winning rate</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Calculation
+<ul>
+<li>Ally Item Voting matrix</li>
+<li><img class="alignnone wp-image-175 aligncenter" src="/wp-content/uploads/2018/04/eq2.png" alt="" width="310" height="25" srcset="/wp-content/uploads/2018/04/eq2.png 384w, /wp-content/uploads/2018/04/eq2-300x24.png 300w" sizes="(max-width: 310px) 100vw, 310px" /></li>
+<li>Enemy Item Voting matrix</li>
+<li><img class="wp-image-176 aligncenter" src="/wp-content/uploads/2018/04/eq3.png" alt="" width="290" height="27" srcset="/wp-content/uploads/2018/04/eq3.png 376w, /wp-content/uploads/2018/04/eq3-300x28.png 300w" sizes="(max-width: 290px) 100vw, 290px" /></li>
+<li>Matchwise Baseline Item Preference</li>
+<li><img class="wp-image-178 aligncenter" src="/wp-content/uploads/2018/04/eq4.png" alt="" width="344" height="54" srcset="/wp-content/uploads/2018/04/eq4.png 503w, /wp-content/uploads/2018/04/eq4-300x47.png 300w" sizes="(max-width: 344px) 100vw, 344px" /></li>
+</ul>
+</li>
+<li>Model evolutions
+<ul>
+<li>TDIPV with Classification
+<ul>
+<li>Items classified into several categories (Early/Mid/Final/Assist)</li>
+<li>Learn per hero item category purchase amount</li>
+<li>Basic items are reserved for better coverage</li>
+<li>Hero-ally item voting</li>
+</ul>
+</li>
+<li>TDIPV with Crafting Tracking (<u>Wei Model</u>)
+<ul>
+<li>Basic/Consumables/Assistance items are not considered</li>
+<li>The crafting process of final/intermediate items is tracked and only the goal item is considered</li>
+<li>New dimensions capturing more specific hero-hero item voting</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div id="attachment_181" style="max-width: 519px" class="wp-caption aligncenter"><img class="wp-image-181 size-full" src="/wp-content/uploads/2018/04/Picture3.png" alt="" width="509" height="534" srcset="/wp-content/uploads/2018/04/Picture3.png 509w, /wp-content/uploads/2018/04/Picture3-286x300.png 286w" sizes="(max-width: 509px) 100vw, 509px" /><p class="wp-caption-text">TDIPV’s impact on Baseline model<br />Ally/Enemy vote what they like/hate<br />=&gt; baseline ranking changes based on team draft</p></div>
+<h1>Evaluation</h1>
+<p><u>Item Classification</u></p>
+<ul>
+<li>Overweight in basic/intermediate items
+<ul>
+<li>Actual Frequency (weighted or not)</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;"><i>Freq(basic) &gt; Freq(intermediate) &gt; Freq(final synthesis)</i></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Importance in reality</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;"><i>Imp(basic) &lt; Imp(intermediate) &lt; Imp(final synthesis)</i></p>
+<ul>
+<li>Need classification
+<p><div id="attachment_185" style="max-width: 323px" class="wp-caption alignright"><img class="wp-image-185" src="/wp-content/uploads/2018/04/Picture4.png" alt="" width="313" height="200" srcset="/wp-content/uploads/2018/04/Picture4.png 555w, /wp-content/uploads/2018/04/Picture4-300x192.png 300w" sizes="(max-width: 313px) 100vw, 313px" /><p class="wp-caption-text">Correlation between match during (Y axis, in seconds) and average item count (X axis)</p></div></li>
+<li>Learning to assign
+<ul>
+<li>Problems: total item purchases differ too much among heroes. Short matches may have up to 20 items per hero on average, while longer matches may have more than 50 items per hero on average.</li>
+<li>How many Early/Mid/Final/Assist item to assign for each hero</li>
+<li>Final is unknown due to noise and too less data available</li>
+<li>Learn E/M/A item average count among all games the hero has x final items in the end (few cases where player buy cheap items after the first final items) for ideal match duration prediction. Final Total Item Count (FTIC) = total item count 90% percentile among all matches.</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;"><i>F = FTIC – ( E + M + A )</i></p>
+<p><u>Evaluation Metric</u></p>
+<ul>
+<li>Similarity Distribution: measurement of predicted vs. actual items of winning teams:</li>
+<li>Conditional winning rate
+<ul>
+<li>Drawbacks:
+<div class="mceTemp"></div>
+<ul>
+<li>Unfit for noisy and in-comprehensive data</li>
+<li>Sudden changes due to rare cases</li>
+</ul>
+</li>
+<li>Compactness of recommendation
+<ul>
+<li>More items in rec, more chances of hit: rec all items-&gt;100% hit rate</li>
+<li>Too less recommendation-&gt;less flexibility for users</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><u>Result</u></p>
+<p>We split our <strong>65000</strong> match json data into <strong>50000</strong> for training set and <strong>15000</strong> for testing set. The evaluation result gives us:</p>
+<ul>
+<li>Baseline: 0.69</li>
+<li>Wei: 0.75</li>
+<li>TDIPV with Classification: 0.76</li>
+</ul>
+<div id="attachment_182" style="max-width: 242px" class="wp-caption alignleft"><img class="wp-image-182" src="/wp-content/uploads/2018/04/fitness_baseline.png" alt="" width="232" height="193" /><p class="wp-caption-text">Baseline fitness</p></div>
+<div id="attachment_184" style="max-width: 246px" class="wp-caption alignleft"><img class="wp-image-184" src="/wp-content/uploads/2018/04/fitness_wei.png" alt="" width="236" height="195" /><p class="wp-caption-text">Wei model fitness</p></div>
+<div id="attachment_183" style="max-width: 247px" class="wp-caption alignleft"><img class="wp-image-183" src="/wp-content/uploads/2018/04/fitness_TDIPV.png" alt="" width="237" height="192" /><p class="wp-caption-text">TDIPV model fitness</p></div>
 <p>&nbsp;</p>
-<h1>Item categorization</h1>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Depending on the testing set, we have variations on the similarities:</p>
+
+<table id="tablepress-2" class="tablepress tablepress-id-2">
+<thead>
+<tr class="row-1 odd">
+	<th class="column-1">Model</th><th class="column-2">Baseline</th><th class="column-3">Wei</th><th class="column-4">TDIPV</th>
+</tr>
+</thead>
+<tbody class="row-hover">
+<tr class="row-2 even">
+	<td class="column-1">Similarity Range</td><td class="column-2">0.65-0.71</td><td class="column-3">0.74-0.78</td><td class="column-4">0.75-0.83</td>
+</tr>
+</tbody>
+</table>
+
+<h1><b>Future Work</b></h1>
+<p>Capture temporal effects</p>
 <ul>
-<li>Consumable</li>
-<li>Basic
-<ul>
-<li>Cost &lt; 1000</li>
-</ul>
-</li>
-<li>Mid
-<ul>
-<li>1001 &lt; Cost &lt; 3500</li>
-</ul>
-</li>
-<li>Advanced
-<ul>
-<li>3501 &lt; Cost</li>
-</ul>
-</li>
-<li>Other types
-<ul>
-<li>Crafted
-<ul>
-<li>We use manual dictionary to remove consumed item.</li>
-</ul>
-</li>
-<li>Upgradable
-<ul>
-<li>An item may have multiple levels, but have the same ID.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1></h1>
-<h1></h1>
-<h1></h1>
-<h1>Algorithm</h1>
-<ul>
-<li>Hero-Item Matrix</li>
-<li>Baseline: Win*1.2, Lose*0.8
-<p><div id="attachment_69" style="max-width: 310px" class="wp-caption alignright"><img class="wp-image-69 size-medium" src="/wp-content/uploads/2018/04/Untitled-picture2-300x96.png" alt="" width="300" height="96" srcset="/wp-content/uploads/2018/04/Untitled-picture2-300x96.png 300w, /wp-content/uploads/2018/04/Untitled-picture2.png 320w" sizes="(max-width: 300px) 100vw, 300px" /><p class="wp-caption-text">Perseverance&#8217;s item hierarchy: Its components are Ring of Health and Void Stone, and it is used to build Refresher Orb, Linken&#8217;s Sphere, Lotus Orb and Battle Fury.</p></div></li>
-<li>Items that benefit yourself</li>
-<li>Items that benefit other teammates</li>
+<li>Item purchase count: linear relation with time</li>
+<li>Similar normal distribution pattern between purchase count and time</li>
+<li>Even more: capture E/M/F/A purchase proportion varying by time</li>
 </ul>
 			</div><!-- .entry-content -->
 	</article><!-- #post-## -->
@@ -192,12 +291,19 @@ img.emoji {
         <div id="sidebar">
     
     <aside id="text-2" class="widget widget_text"><h3 class="widget-title">About Us</h3>			<div class="textwidget"><p><strong>Members</strong><br />
-Yukun Zeng &#8211; Core Algorithm</p>
+Yukun Zeng</p>
 <p>Guanlun Zhao</p>
-<p>Victor Lin &#8211; Website Development</p>
+<p>Victor Lin</p>
 <p>Wei Shi</p>
 </div>
 		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">About Project</h3>			<div class="textwidget"><p>CSCE-670 Spring 2018 Group Project</p>
+</div>
+		</aside><aside id="media_video-3" class="widget widget_media_video"><h3 class="widget-title">D2Rec Demo</h3><div style="width:100%;" class="wp-video"><!--[if lt IE 9]><script>document.createElement('video');</script><![endif]-->
+<video class="wp-video-shortcode" id="video-59-1" preload="metadata" controls="controls"><source type="video/youtube" src="https://www.youtube.com/watch?v=4GPTGzDXGLA&#038;_=1" /><a href="https://www.youtube.com/watch?v=4GPTGzDXGLA">https://www.youtube.com/watch?v=4GPTGzDXGLA</a></video></div></aside><aside id="text-7" class="widget widget_text"><h3 class="widget-title">Project Files &#038; Links</h3>			<div class="textwidget"><ul>
+<li><a href="/wp-content/uploads/2018/04/d2rec_propsal.pdf">[PDF] Project Propsal</a></li>
+<li><a href="/wp-content/uploads/2018/04/d2rec_poster.pdf">[PDF] Project_Poster</a></li>
+<li><a href="https://github.com/dota2rec">Github</a></li>
+</ul>
 </div>
 		</aside>	
 </div><!-- sidebar -->
@@ -213,7 +319,26 @@ Yukun Zeng &#8211; Core Algorithm</p>
                 </div><!-- copyright --><div class="clear"></div>           
         </div>
     </div>        
+<link rel='stylesheet' id='mediaelement-css'  href='/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.6-78496d1' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=4.9.4' type='text/css' media='all' />
 <script type='text/javascript' src='/wp-includes/js/wp-embed.min.js?ver=4.9.4'></script>
-
+<script type='text/javascript' src='/wp-content/plugins/tablepress/js/jquery.datatables.min.js?ver=1.9'></script>
+<script type='text/javascript'>
+var mejsL10n = {"language":"en","strings":{"mejs.install-flash":"You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https:\/\/get.adobe.com\/flashplayer\/","mejs.fullscreen-off":"Turn off Fullscreen","mejs.fullscreen-on":"Go Fullscreen","mejs.download-video":"Download Video","mejs.fullscreen":"Fullscreen","mejs.time-jump-forward":["Jump forward 1 second","Jump forward %1 seconds"],"mejs.loop":"Toggle Loop","mejs.play":"Play","mejs.pause":"Pause","mejs.close":"Close","mejs.time-slider":"Time Slider","mejs.time-help-text":"Use Left\/Right Arrow keys to advance one second, Up\/Down arrows to advance ten seconds.","mejs.time-skip-back":["Skip back 1 second","Skip back %1 seconds"],"mejs.captions-subtitles":"Captions\/Subtitles","mejs.captions-chapters":"Chapters","mejs.none":"None","mejs.mute-toggle":"Mute Toggle","mejs.volume-help-text":"Use Up\/Down Arrow keys to increase or decrease volume.","mejs.unmute":"Unmute","mejs.mute":"Mute","mejs.volume-slider":"Volume Slider","mejs.video-player":"Video Player","mejs.audio-player":"Audio Player","mejs.ad-skip":"Skip ad","mejs.ad-skip-info":["Skip in 1 second","Skip in %1 seconds"],"mejs.source-chooser":"Source Chooser","mejs.stop":"Stop","mejs.speed-rate":"Speed Rate","mejs.live-broadcast":"Live Broadcast","mejs.afrikaans":"Afrikaans","mejs.albanian":"Albanian","mejs.arabic":"Arabic","mejs.belarusian":"Belarusian","mejs.bulgarian":"Bulgarian","mejs.catalan":"Catalan","mejs.chinese":"Chinese","mejs.chinese-simplified":"Chinese (Simplified)","mejs.chinese-traditional":"Chinese (Traditional)","mejs.croatian":"Croatian","mejs.czech":"Czech","mejs.danish":"Danish","mejs.dutch":"Dutch","mejs.english":"English","mejs.estonian":"Estonian","mejs.filipino":"Filipino","mejs.finnish":"Finnish","mejs.french":"French","mejs.galician":"Galician","mejs.german":"German","mejs.greek":"Greek","mejs.haitian-creole":"Haitian Creole","mejs.hebrew":"Hebrew","mejs.hindi":"Hindi","mejs.hungarian":"Hungarian","mejs.icelandic":"Icelandic","mejs.indonesian":"Indonesian","mejs.irish":"Irish","mejs.italian":"Italian","mejs.japanese":"Japanese","mejs.korean":"Korean","mejs.latvian":"Latvian","mejs.lithuanian":"Lithuanian","mejs.macedonian":"Macedonian","mejs.malay":"Malay","mejs.maltese":"Maltese","mejs.norwegian":"Norwegian","mejs.persian":"Persian","mejs.polish":"Polish","mejs.portuguese":"Portuguese","mejs.romanian":"Romanian","mejs.russian":"Russian","mejs.serbian":"Serbian","mejs.slovak":"Slovak","mejs.slovenian":"Slovenian","mejs.spanish":"Spanish","mejs.swahili":"Swahili","mejs.swedish":"Swedish","mejs.tagalog":"Tagalog","mejs.thai":"Thai","mejs.turkish":"Turkish","mejs.ukrainian":"Ukrainian","mejs.vietnamese":"Vietnamese","mejs.welsh":"Welsh","mejs.yiddish":"Yiddish"}};
+</script>
+<script type='text/javascript' src='/wp-includes/js/mediaelement/mediaelement-and-player.min.js?ver=4.2.6-78496d1'></script>
+<script type='text/javascript' src='/wp-includes/js/mediaelement/mediaelement-migrate.min.js?ver=4.9.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpmejsSettings = {"pluginPath":"\/wordpress\/wp-includes\/js\/mediaelement\/","classPrefix":"mejs-","stretching":"responsive"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-includes/js/mediaelement/wp-mediaelement.min.js?ver=4.9.4'></script>
+<script type='text/javascript' src='/wp-includes/js/mediaelement/renderers/vimeo.min.js?ver=4.2.6-78496d1'></script>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+$('#tablepress-2').dataTable({"stripeClasses":["even","odd"],"ordering":false,"paging":false,"searching":false,"info":false});
+});
+</script>
 </body>
 </html>
